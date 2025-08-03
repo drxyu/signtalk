@@ -1,0 +1,44 @@
+/* App-specific styles */
+.avatar-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Loading animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.active {
+  background-color: #10b981;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.status-indicator.inactive {
+  background-color: #ef4444;
+}
+
+/* Audio/Motion level bars */
+.level-bar {
+  width: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: height 0.1s ease-out;
+}

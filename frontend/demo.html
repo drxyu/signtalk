@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 16 Pro Max Frame</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .iphone-frame {
+            width: 430px;
+            height: 932px;
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            border-radius: 68px;
+            padding: 12px;
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.8),
+                0 25px 50px rgba(0, 0, 0, 0.6),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.02);
+            position: relative;
+        }
+        
+        .iphone-inner {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 56px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 15px rgba(0, 0, 0, 0.9),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        .dynamic-island {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: #000;
+            border-radius: 10px;
+            opacity: 1;
+            z-index: 30;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 56px;
+            display: flex;
+            position: relative;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 56px;
+            overflow: hidden;
+        }
+        
+        .video-feed {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: scaleX(-1);
+            background: #000;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .video-label {
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+        
+        .video-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .control-btn.camera-switch {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .control-btn.camera-switch svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .control-btn.speaker-toggle {
+            position: absolute;
+            top: 130px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .control-btn.speaker-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .control-btn.speaker-toggle.disabled {
+            opacity: 0.6;
+        }
+        
+        .control-btn.speaker-toggle.disabled .speaker-x {
+            stroke: #ff4444;
+        }
+        
+        .status-bar {
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            right: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 25;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-time {
+            font-size: 15px;
+        }
+        
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .signal-bars {
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+        }
+        
+        .signal-bar {
+            width: 3px;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        .signal-bar:nth-child(1) { height: 4px; }
+        .signal-bar:nth-child(2) { height: 6px; }
+        .signal-bar:nth-child(3) { height: 8px; }
+        .signal-bar:nth-child(4) { height: 10px; }
+        
+        .wifi-icon {
+            width: 15px;
+            height: 15px;
+        }
+        
+        .battery-icon {
+            width: 24px;
+            height: 12px;
+            border: 1px solid white;
+            border-radius: 2px;
+            position: relative;
+            padding: 1px;
+        }
+        
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 3px;
+            width: 2px;
+            height: 4px;
+            background: white;
+            border-radius: 0 1px 1px 0;
+        }
+        
+        .battery-fill {
+            height: 100%;
+            background: white;
+            border-radius: 1px;
+            width: 80%;
+        }
+        
+        .carrier-text {
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        
+        .status {
+            position: absolute;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #ccc;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 12px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        
+        .translation-overlay {
+            position: absolute;
+            bottom: 200px;
+            left: 20px;
+            right: 20px;
+            max-width: 380px;
+            max-height: 200px;
+            z-index: 20;
+            pointer-events: none;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column-reverse;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .translation-overlay::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .translation-message {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.3s ease-out forwards;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .translation-message.fade-out {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+        
+        .translation-label {
+            font-size: 11px;
+            color: #059669;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        
+        .translation-text {
+            font-size: 15px;
+            line-height: 1.4;
+            color: #111827;
+        }
+        
+        .translation-confidence {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .header-left {
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 20;
+        }
+        
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(128, 128, 128, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .brand-logo {
+            font-size: 24px;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+        }
+        
+        .brand-name {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .menu-button {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .menu-button:active {
+            transform: scale(0.95);
+        }
+        
+        .menu-button span {
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            padding: 10px;
+            display: none;
+            z-index: 19;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .menu-dropdown::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .menu-dropdown::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+        
+        .menu-dropdown::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .menu-dropdown.show {
+            display: block;
+        }
+        
+        .menu-item {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-item:active {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(0.98);
+        }
+        
+        .menu-item.danger {
+            color: #ff6b6b;
+        }
+        
+        .visualization-3d {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 160px;
+            height: 160px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            z-index: 15;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .visualization-3d canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+        
+        .visualization-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .visualization-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #a855f7;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .volume-buttons {
+            position: absolute;
+            left: -3px;
+            top: 200px;
+        }
+        
+        .volume-button {
+            width: 4px;
+            height: 35px;
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
+            margin-bottom: 25px;
+            border-radius: 2px 0 0 2px;
+            box-shadow: 
+                -2px 0 4px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .mute-switch {
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
+            border-radius: 2px 0 0 2px;
+            box-shadow: 
+                -2px 0 4px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .power-button {
+            position: absolute;
+            right: -3px;
+            top: 250px;
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
+            border-radius: 0 2px 2px 0;
+            box-shadow: 
+                2px 0 4px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        .camera-button {
+            position: absolute;
+            right: -3px;
+            top: 380px;
+            width: 4px;
+            height: 50px;
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
+            border-radius: 0 2px 2px 0;
+            box-shadow: 
+                2px 0 4px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Training UI Styles */
+        .training-ui {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 350px;
+            max-width: 90%;
+            color: white;
+        }
+        
+        .training-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .training-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .record-btn {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 59, 48, 0.9);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .record-btn:hover {
+            background: rgba(255, 59, 48, 1);
+            transform: scale(1.02);
+        }
+        
+        .record-btn.recording {
+            background: rgba(255, 204, 0, 0.9);
+            animation: recordPulse 1.5s infinite;
+        }
+        
+        @keyframes recordPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .recording-status {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #ccc;
+            min-height: 20px;
+        }
+        
+        .gesture-name-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .gesture-name-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .gesture-name-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .training-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .save-btn, .cancel-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .save-btn {
+            background: rgba(52, 199, 89, 0.9);
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: rgba(52, 199, 89, 1);
+            transform: scale(1.02);
+        }
+        
+        .cancel-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .saved-gestures {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .saved-gestures h4 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .gesture-list {
+            max-height: 150px;
+            overflow-y: scroll; /* Changed from auto to scroll to always show scrollbar */
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1); /* For Firefox */
+        }
+        
+        /* Custom scrollbar styling for Webkit browsers (Chrome, Safari) */
+        .gesture-list::-webkit-scrollbar {
+            width: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .gesture-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        
+        .gesture-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gesture-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .gesture-list::-webkit-scrollbar-thumb:active {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .gesture-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            min-height: 48px;
+        }
+        
+        .gesture-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .gesture-item span:first-child {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .delete-gesture-btn {
+            background: rgba(255, 59, 48, 0.2);
+            border: none;
+            color: #ff453a;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        
+        .delete-gesture-btn:hover {
+            background: rgba(255, 59, 48, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .community-label {
+            color: #8e8e93;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "@mediapipe/tasks-vision": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/vision_bundle.mjs"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="iphone-inner">
+            <div class="dynamic-island"></div>
+            <div class="screen">
+                <div class="status-bar">
+                    <div class="status-time" id="statusTime">12:24</div>
+                    <div class="status-icons">
+                        <div class="signal-bars">
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                        </div>
+                        <svg class="wifi-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.65-4.35-1.65-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+                        </svg>
+                        <div class="battery-icon">
+                            <div class="battery-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-left">
+                    <button class="menu-button" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="brand-container">
+                        <div class="brand-logo"></div>
+                        <div class="brand-name">SignTALK</div>
+                    </div>
+                </div>
+                
+                <button class="control-btn camera-switch" onclick="switchCamera()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.242 2.98a1 1 0 0 1 1.516 0l3.256 3.256a1 1 0 0 1 0 1.516l-3.256 3.256a1 1 0 0 1-1.516-1.516l1.55-1.55H9.5a4.5 4.5 0 0 0 0 9h1a1 1 0 1 1 0 2h-1a6.5 6.5 0 1 1 0-13h8.292l-1.55-1.55a1 1 0 0 1 0-1.412z" fill="currentColor"/>
+                        <path d="M7.758 21.02a1 1 0 0 1-1.516 0l-3.256-3.256a1 1 0 0 1 0-1.516l3.256-3.256a1 1 0 0 1 1.516 1.516l-1.55 1.55H14.5a4.5 4.5 0 0 0 0-9h-1a1 1 0 1 1 0-2h1a6.5 6.5 0 1 1 0 13H6.208l1.55 1.55a1 1 0 0 1 0 1.412z" fill="currentColor"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn speaker-toggle disabled" onclick="toggleSpeaker()" title="Toggle Speech (Not Implemented)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="speaker-x"/>
+                        <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="speaker-x"/>
+                    </svg>
+                </button>
+                
+                <div class="menu-dropdown" id="menuDropdown">
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">🏠</span>        
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">🏠</span> Home
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">👤</span> Profile
+                    </button>
+                    <button class="menu-item" onclick="showTrainingUI()">
+                        <span style="margin-right: 8px;"></span> Train Custom Gesture
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">📚</span> Learning Center
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;"></span> History
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">📖</span> ASL Dictionary
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">⏺️</span> Record Session
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">📤</span> Share
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">🔳</span> Fullscreen
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">⚙️</span> Settings
+                    </button>
+                    <button class="menu-item" onclick="return false;">
+                        <span style="margin-right: 8px;">❓</span> Help & Tutorial
+                    </button>
+                    <button class="menu-item danger" onclick="return false;">
+                        <span style="margin-right: 8px;">🚪</span> Exit
+                    </button>
+                </div>
+                
+                <div class="video-container">
+                    <video class="video-feed" id="videoFeed" autoplay playsinline muted></video>
+                    <canvas class="video-overlay" id="canvasOverlay"></canvas>
+                </div>
+                
+                <div class="status" id="status" style="display: none;">Initializing...</div>
+                
+                <div class="translation-overlay" id="translationOverlay">
+                    <!-- Translation messages will be added here dynamically -->
+                </div>
+                
+                <div class="visualization-3d" id="visualization3d">
+                    <canvas id="threejsCanvas"></canvas>
+                </div>
+                
+                <!-- Training UI -->
+                <div class="training-ui" id="trainingUI" style="display: none;">
+                    <div class="training-header">
+                        <h3>Train Custom Gesture</h3>
+                        <button class="close-btn" onclick="hideTrainingUI()">✕</button>
+                    </div>
+                    <div class="training-content">
+                        <button class="record-btn" id="recordBtn" onclick="toggleRecording()">
+                            <span class="record-icon">⏺️</span>
+                            <span class="record-text">Start Recording</span>
+                        </button>
+                        <div class="recording-status" id="recordingStatus"></div>
+                        <input type="text" 
+                               class="gesture-name-input" 
+                               id="gestureName" 
+                               placeholder="Enter gesture meaning (e.g., 'Thank you')"
+                               style="display: none;">
+                        <div class="training-actions" id="trainingActions" style="display: none;">
+                            <button class="save-btn" onclick="saveGesture()">Save Gesture</button>
+                            <button class="cancel-btn" onclick="cancelTraining()">Cancel</button>
+                        </div>
+                        <div class="saved-gestures" id="savedGestures">
+                            <h4>Saved Gestures</h4>
+                            <div class="gesture-list" id="gestureList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="volume-buttons">
+            <div class="mute-switch"></div>
+            <div class="volume-button"></div>
+            <div class="volume-button"></div>
+        </div>
+        
+        <div class="power-button"></div>
+        <div class="camera-button"></div>
+    </div>
+    <script type="module">
+        import { FilesetResolver, HandLandmarker, PoseLandmarker } from '@mediapipe/tasks-vision';
+        
+        let stream = null;
+        let currentCamera = 'user'; // 'user' for front camera, 'environment' for back
+        let handLandmarker = null;
+        let poseLandmarker = null;
+        let animationId = null;
+        let currentHandLandmarks = null;
+        let currentPoseLandmarks = null;
+        let lastDetectedGesture = '';
+        let gestureHistory = [];
+        let isDetecting = false; // Flag to prevent multiple detection loops
+        let translationMessages = [];
+        let gestureAnalyzer = null;
+        let motionTracker = null;
+        let previousHandPosition = null;
+        
+        // Custom gesture training variables
+        let isRecording = false;
+        let recordingStartTime = null;
+        let recordingFrames = [];
+        let customGestures = [];
+        const RECORDING_DURATION = 3000; // 3 seconds
+        
+        // Load custom gestures from JSON files and localStorage
+        async function loadCustomGestures() {
+            try {
+                // First, try to load from JSON files
+                const loadedGestures = [];
+                
+                // Load community gestures
+                try {
+                    const communityResponse = await fetch('./public/gestures/community-gestures.json');
+                    if (communityResponse.ok) {
+                        const communityData = await communityResponse.json();
+                        if (communityData.gestures) {
+                            loadedGestures.push(...communityData.gestures.map(g => ({
+                                ...g,
+                                source: 'community'
+                            })));
+                        }
+                    }
+                } catch (error) {
+                    console.log('Could not load community gestures:', error);
+                }
+                
+                // Load user's custom gestures from file
+                try {
+                    const customResponse = await fetch('./public/gestures/custom-gestures.json');
+                    console.log('Custom gestures fetch response:', customResponse.status);
+                    if (customResponse.ok) {
+                        const customData = await customResponse.json();
+                        console.log('Custom gestures data:', customData);
+                        if (customData.gestures && customData.gestures.length > 0) {
+                            loadedGestures.push(...customData.gestures.map(g => ({
+                                ...g,
+                                source: 'file'
+                            })));
+                            console.log('Loaded custom gestures from file:', customData.gestures.length);
+                        }
+                    }
+                } catch (error) {
+                    console.log('Could not load custom gestures file:', error);
+                }
+                
+                // Also load from localStorage (for immediate saves)
+                const stored = localStorage.getItem('customGestures');
+                console.log('Loading from localStorage:', stored ? 'Found data' : 'No data');
+                if (stored) {
+                    try {
+                        const localGestures = JSON.parse(stored);
+                        console.log('Parsed localStorage gestures:', localGestures);
+                        
+                        // Handle both array format (old) and new format with source
+                        if (Array.isArray(localGestures)) {
+                            localGestures.forEach(localGesture => {
+                                // Skip if it's a community gesture that we already loaded
+                                if (localGesture.source === 'community') {
+                                    return;
+                                }
+                                
+                                // Don't check for duplicates, just add all custom gestures
+                                // This ensures we don't miss any
+                                loadedGestures.push({
+                                    ...localGesture,
+                                    source: localGesture.source || 'local'
+                                });
+                            });
+                            console.log('Added gestures from localStorage:', localGestures.filter(g => g.source !== 'community').length);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing localStorage:', error);
+                    }
+                }
+                
+                customGestures = loadedGestures;
+                updateGestureList();
+                
+                console.log(`Loaded ${customGestures.length} gestures:`, 
+                    customGestures.filter(g => g.source === 'community').length + ' community,',
+                    customGestures.filter(g => g.source === 'file').length + ' from file,',
+                    customGestures.filter(g => g.source === 'local').length + ' local'
+                );
+                
+            } catch (error) {
+                console.error('Error loading gestures:', error);
+                customGestures = [];
+            }
+        }
+        
+        // Save custom gestures to localStorage and provide export functionality
+        function saveCustomGestures() {
+            try {
+                // Save all gestures to localStorage (including source info)
+                localStorage.setItem('customGestures', JSON.stringify(customGestures));
+                
+                // Filter out community gestures for export
+                const userGestures = customGestures.filter(g => g.source !== 'community');
+                
+                // Prepare the file format for export
+                const fileData = {
+                    version: "1.0",
+                    description: "User's custom trained gestures",
+                    gestures: userGestures.map(g => {
+                        // Remove source field for file export
+                        const { source, ...gestureData } = g;
+                        return gestureData;
+                    })
+                };
+                
+                // Store formatted data for export button
+                window.exportableGestureData = fileData;
+                
+            } catch (error) {
+                console.error('Error saving custom gestures:', error);
+            }
+        }
+        
+        // Extract features from hand landmarks
+        function extractGestureFeatures(landmarks) {
+            if (!landmarks || landmarks.length < 21) return null;
+            
+            // Extract finger states
+            const fingerStates = [
+                isFingerExtended(landmarks, LANDMARKS.THUMB_CMC, LANDMARKS.THUMB_TIP),
+                isFingerExtended(landmarks, LANDMARKS.INDEX_MCP, LANDMARKS.INDEX_TIP),
+                isFingerExtended(landmarks, LANDMARKS.MIDDLE_MCP, LANDMARKS.MIDDLE_TIP),
+                isFingerExtended(landmarks, LANDMARKS.RING_MCP, LANDMARKS.RING_TIP),
+                isFingerExtended(landmarks, LANDMARKS.PINKY_MCP, LANDMARKS.PINKY_TIP)
+            ];
+            
+            // Extract key angles
+            const keyAngles = [
+                // Wrist to index angle
+                calculateAngle(landmarks[LANDMARKS.WRIST], landmarks[LANDMARKS.INDEX_MCP], landmarks[LANDMARKS.INDEX_TIP]),
+                // Thumb to index angle
+                calculateAngle(landmarks[LANDMARKS.THUMB_TIP], landmarks[LANDMARKS.WRIST], landmarks[LANDMARKS.INDEX_TIP]),
+                // Index to middle angle
+                calculateAngle(landmarks[LANDMARKS.INDEX_TIP], landmarks[LANDMARKS.INDEX_MCP], landmarks[LANDMARKS.MIDDLE_TIP])
+            ];
+            
+            // Get hand position relative to screen (for context like "near chin")
+            const wrist = landmarks[LANDMARKS.WRIST];
+            const position = {
+                x: wrist.x,
+                y: wrist.y,
+                z: wrist.z
+            };
+            
+            return {
+                fingerStates,
+                keyAngles,
+                position
+            };
+        }
+        
+        // Calculate similarity between two gesture features
+        function calculateGestureSimilarity(features1, features2) {
+            if (!features1 || !features2) return 0;
+            
+            let similarity = 0;
+            let weights = 0;
+            
+            // Compare finger states (40% weight)
+            let fingerMatch = 0;
+            for (let i = 0; i < 5; i++) {
+                if (features1.fingerStates[i] === features2.fingerStates[i]) {
+                    fingerMatch += 1;
+                }
+            }
+            similarity += (fingerMatch / 5) * 0.4;
+            weights += 0.4;
+            
+            // Compare key angles (40% weight)
+            let angleMatch = 0;
+            for (let i = 0; i < features1.keyAngles.length; i++) {
+                const angleDiff = Math.abs(features1.keyAngles[i] - features2.keyAngles[i]);
+                // Consider angles similar if within 20 degrees
+                if (angleDiff < 20) {
+                    angleMatch += 1 - (angleDiff / 20);
+                }
+            }
+            similarity += (angleMatch / features1.keyAngles.length) * 0.4;
+            weights += 0.4;
+            
+            // Compare position (20% weight) - less important
+            const posDiff = Math.sqrt(
+                Math.pow(features1.position.x - features2.position.x, 2) +
+                Math.pow(features1.position.y - features2.position.y, 2)
+            );
+            const posMatch = Math.max(0, 1 - posDiff * 2); // Scale position difference
+            similarity += posMatch * 0.2;
+            weights += 0.2;
+            
+            return similarity / weights;
+        }
+        
+        // Training UI functions
+        window.showTrainingUI = async function() {
+            document.getElementById('trainingUI').style.display = 'block';
+            document.getElementById('menuDropdown').classList.remove('show');
+            await loadCustomGestures();
+            updateGestureList();
+        }
+        
+        window.hideTrainingUI = function() {
+            document.getElementById('trainingUI').style.display = 'none';
+            cancelTraining();
+        }
+        
+        window.toggleRecording = function() {
+            if (!isRecording) {
+                startRecording();
+            } else {
+                stopRecording();
+            }
+        }
+        
+        function startRecording() {
+            isRecording = true;
+            recordingStartTime = Date.now();
+            recordingFrames = [];
+            
+            const recordBtn = document.getElementById('recordBtn');
+            const recordText = recordBtn.querySelector('.record-text');
+            const recordingStatus = document.getElementById('recordingStatus');
+            
+            recordBtn.classList.add('recording');
+            recordText.textContent = 'Recording...';
+            recordingStatus.textContent = 'Perform your gesture now...';
+            
+            // Start countdown
+            updateRecordingStatus();
+        }
+        
+        function updateRecordingStatus() {
+            if (!isRecording) return;
+            
+            const elapsed = Date.now() - recordingStartTime;
+            const remaining = Math.max(0, RECORDING_DURATION - elapsed);
+            const seconds = Math.ceil(remaining / 1000);
+            
+            document.getElementById('recordingStatus').textContent = 
+                `Recording... ${seconds} seconds remaining`;
+            
+            if (remaining > 0) {
+                setTimeout(updateRecordingStatus, 100);
+            } else {
+                stopRecording();
+            }
+        }
+        
+        function stopRecording() {
+            isRecording = false;
+            
+            const recordBtn = document.getElementById('recordBtn');
+            const recordText = recordBtn.querySelector('.record-text');
+            const recordingStatus = document.getElementById('recordingStatus');
+            
+            recordBtn.classList.remove('recording');
+            recordText.textContent = 'Start Recording';
+            
+            if (recordingFrames.length > 0) {
+                recordingStatus.textContent = `Captured ${recordingFrames.length} frames. Enter gesture meaning:`;
+                document.getElementById('gestureName').style.display = 'block';
+                document.getElementById('trainingActions').style.display = 'flex';
+                document.getElementById('gestureName').focus();
+            } else {
+                recordingStatus.textContent = 'No gesture detected. Try again.';
+            }
+        }
+        
+        window.saveGesture = function() {
+            const gestureName = document.getElementById('gestureName').value.trim();
+            
+            if (!gestureName) {
+                alert('Please enter a name for the gesture');
+                return;
+            }
+            
+            if (recordingFrames.length === 0) {
+                alert('No gesture data recorded');
+                return;
+            }
+            
+            // Average features across all frames
+            const avgFeatures = averageGestureFeatures(recordingFrames);
+            
+            // Check for motion pattern
+            const motionPattern = detectMotionPattern(recordingFrames);
+            
+            // Create custom gesture object
+            const customGesture = {
+                name: gestureName,
+                features: avgFeatures,
+                motionPattern: motionPattern,
+                author: "user",
+                source: "local",
+                samples: 1,
+                created: new Date().toISOString()
+            };
+            
+            // Add to custom gestures
+            customGestures.push(customGesture);
+            saveCustomGestures();
+            updateGestureList();
+            
+            // Reset UI
+            cancelTraining();
+            
+            // Show success message
+            document.getElementById('recordingStatus').textContent = 
+                `Gesture "${gestureName}" saved successfully!`;
+        }
+        
+        window.cancelTraining = function() {
+            isRecording = false;
+            recordingFrames = [];
+            
+            document.getElementById('recordBtn').classList.remove('recording');
+            document.getElementById('recordBtn').querySelector('.record-text').textContent = 'Start Recording';
+            document.getElementById('gestureName').value = '';
+            document.getElementById('gestureName').style.display = 'none';
+            document.getElementById('trainingActions').style.display = 'none';
+            document.getElementById('recordingStatus').textContent = '';
+        }
+        
+        function averageGestureFeatures(frames) {
+            if (frames.length === 0) return null;
+            
+            // Initialize averages
+            const avgFeatures = {
+                fingerStates: [0, 0, 0, 0, 0],
+                keyAngles: [0, 0, 0],
+                position: { x: 0, y: 0, z: 0 }
+            };
+            
+            // Sum all features
+            frames.forEach(features => {
+                for (let i = 0; i < 5; i++) {
+                    avgFeatures.fingerStates[i] += features.fingerStates[i] ? 1 : 0;
+                }
+                for (let i = 0; i < features.keyAngles.length; i++) {
+                    avgFeatures.keyAngles[i] += features.keyAngles[i];
+                }
+                avgFeatures.position.x += features.position.x;
+                avgFeatures.position.y += features.position.y;
+                avgFeatures.position.z += features.position.z;
+            });
+            
+            // Calculate averages
+            const count = frames.length;
+            for (let i = 0; i < 5; i++) {
+                avgFeatures.fingerStates[i] = avgFeatures.fingerStates[i] / count > 0.5;
+            }
+            for (let i = 0; i < avgFeatures.keyAngles.length; i++) {
+                avgFeatures.keyAngles[i] /= count;
+            }
+            avgFeatures.position.x /= count;
+            avgFeatures.position.y /= count;
+            avgFeatures.position.z /= count;
+            
+            return avgFeatures;
+        }
+        
+        function detectMotionPattern(frames) {
+            if (frames.length < 10) return 'static';
+            
+            // Check for motion in x, y, z
+            const startPos = frames[0].position;
+            const endPos = frames[frames.length - 1].position;
+            
+            const dx = endPos.x - startPos.x;
+            const dy = endPos.y - startPos.y;
+            const dz = endPos.z - startPos.z;
+            
+            // Detect motion patterns
+            if (Math.abs(dx) > 0.15) {
+                return dx > 0 ? 'right' : 'left';
+            }
+            if (Math.abs(dy) > 0.15) {
+                return dy > 0 ? 'down' : 'up';
+            }
+            if (Math.abs(dz) > 0.05) {
+                return dz > 0 ? 'forward' : 'backward';
+            }
+            
+            // Check for waving (alternating x movement)
+            let directionChanges = 0;
+            let lastDirection = null;
+            for (let i = 1; i < frames.length; i++) {
+                const currentDx = frames[i].position.x - frames[i-1].position.x;
+                const currentDirection = currentDx > 0.01 ? 'right' : currentDx < -0.01 ? 'left' : null;
+                if (currentDirection && lastDirection && currentDirection !== lastDirection) {
+                    directionChanges++;
+                }
+                if (currentDirection) lastDirection = currentDirection;
+            }
+            
+            if (directionChanges >= 2) {
+                return 'waving';
+            }
+            
+            // Check for circular motion
+            if (frames.length >= 20) {
+                const positions = frames.map(f => ({ x: f.position.x, y: f.position.y }));
+                let angleSum = 0;
+                
+                for (let i = 1; i < positions.length - 1; i++) {
+                    const v1x = positions[i].x - positions[i-1].x;
+                    const v1y = positions[i].y - positions[i-1].y;
+                    const v2x = positions[i+1].x - positions[i].x;
+                    const v2y = positions[i+1].y - positions[i].y;
+                    
+                    // Cross product to determine rotation direction
+                    const cross = v1x * v2y - v1y * v2x;
+                    angleSum += cross;
+                }
+                
+                // If significant rotation detected
+                if (Math.abs(angleSum) > 0.05) {
+                    return 'circular';
+                }
+            }
+            
+            return 'static';
+        }
+        
+        function updateGestureList() {
+            const gestureList = document.getElementById('gestureList');
+            gestureList.innerHTML = '';
+            
+            if (customGestures.length === 0) {
+                gestureList.innerHTML = '<div style="color: #666; font-size: 12px;">No custom gestures saved</div>';
+                return;
+            }
+            
+            // Add export button if there are user gestures
+            const userGestures = customGestures.filter(g => g.source !== 'community');
+            if (userGestures.length > 0) {
+                const exportDiv = document.createElement('div');
+                exportDiv.style.marginBottom = '10px';
+                exportDiv.innerHTML = `
+                    <button onclick="exportGestures()" style="
+                        background: rgba(0, 122, 255, 0.9);
+                        color: white;
+                        border: none;
+                        padding: 8px 16px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        cursor: pointer;
+                        width: 100%;
+                    ">📥 Export My Gestures to File</button>
+                `;
+                gestureList.appendChild(exportDiv);
+            }
+            
+            customGestures.forEach((gesture, index) => {
+                const item = document.createElement('div');
+                item.className = 'gesture-item';
+                const sourceLabel = gesture.source === 'community' ? ' 🌍' : 
+                                   gesture.source === 'file' ? ' 📁' : ' 💾';
+                item.innerHTML = `
+                    <span>${gesture.name}${sourceLabel}</span>
+                    ${gesture.source !== 'community' ? 
+                        `<button class="delete-gesture-btn" onclick="deleteGesture(${index})">Delete</button>` : 
+                        '<span class="community-label">Community</span>'}
+                `;
+                gestureList.appendChild(item);
+            });
+        }
+        
+        // Export gestures to downloadable file
+        window.exportGestures = function() {
+            saveCustomGestures(); // Ensure latest data is prepared
+            
+            const dataStr = JSON.stringify(window.exportableGestureData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'custom-gestures.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Gestures exported! Copy this file to public/gestures/ to share with others.');
+        }
+        
+        window.deleteGesture = function(index) {
+            if (confirm('Delete this gesture?')) {
+                customGestures.splice(index, 1);
+                saveCustomGestures();
+                updateGestureList();
+            }
+        }
+        
+        // Debug function to check localStorage
+        window.debugGestures = function() {
+            console.log('=== Gesture Debug Info ===');
+            console.log('Current customGestures array:', customGestures);
+            console.log('localStorage content:', localStorage.getItem('customGestures'));
+            try {
+                const stored = localStorage.getItem('customGestures');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    console.log('Parsed localStorage gestures:', parsed);
+                }
+            } catch (e) {
+                console.error('Error parsing localStorage:', e);
+            }
+            console.log('=== End Debug Info ===');
+        }
+        
+        // Function to manually refresh gesture list
+        window.refreshGestures = async function() {
+            await loadCustomGestures();
+            console.log('Gestures refreshed. Total count:', customGestures.length);
+        }
+        
+        // Function to fix/migrate old gesture format
+        window.fixGestures = function() {
+            const stored = localStorage.getItem('customGestures');
+            if (!stored) {
+                console.log('No gestures in localStorage');
+                return;
+            }
+            
+            try {
+                let gestures = JSON.parse(stored);
+                console.log('Current stored gestures:', gestures);
+                
+                // If it's the old format (just an array of custom gestures without community)
+                // We need to preserve them
+                const fixedGestures = [];
+                
+                if (Array.isArray(gestures)) {
+                    gestures.forEach(g => {
+                        // Ensure each gesture has a source
+                        if (!g.source) {
+                            g.source = 'local';
+                        }
+                        // Don't include duplicate community gestures
+                        if (g.source !== 'community') {
+                            fixedGestures.push(g);
+                        }
+                    });
+                }
+                
+                // Save the fixed gestures
+                localStorage.setItem('customGestures', JSON.stringify(fixedGestures));
+                console.log('Fixed gestures:', fixedGestures);
+                
+                // Reload
+                refreshGestures();
+                
+            } catch (error) {
+                console.error('Error fixing gestures:', error);
+            }
+        }
+        
+        // Recognize custom gestures
+        function recognizeCustomGesture(landmarks) {
+            if (!landmarks || customGestures.length === 0) return null;
+            
+            const currentFeatures = extractGestureFeatures(landmarks);
+            if (!currentFeatures) return null;
+            
+            let bestMatch = null;
+            let bestSimilarity = 0;
+            
+            // Compare with all custom gestures
+            customGestures.forEach(gesture => {
+                let similarity = calculateGestureSimilarity(currentFeatures, gesture.features);
+                
+                // If gesture has motion pattern, check if current motion matches
+                if (gesture.motionPattern && gesture.motionPattern !== 'static') {
+                    const currentMotion = motionTracker.detectWavingMotion() || 
+                                         motionTracker.detectVerticalMotion() || 
+                                         motionTracker.detectForwardMotion() || 
+                                         'static';
+                    
+                    // Boost similarity if motion matches
+                    if (currentMotion === gesture.motionPattern) {
+                        similarity = Math.min(similarity * 1.2, 1.0); // Cap at 1.0
+                    } else if (currentMotion !== 'static' && gesture.motionPattern !== 'static') {
+                        // Reduce similarity if different motion
+                        similarity *= 0.8;
+                    }
+                }
+                
+                if (similarity > bestSimilarity && similarity > 0.8) { // 80% threshold
+                    bestMatch = gesture;
+                    bestSimilarity = similarity;
+                }
+            });
+            
+            return bestMatch ? { 
+                gesture: bestMatch.name, 
+                confidence: bestSimilarity,
+                isCustom: true 
+            } : null;
+        }
+
+        async function initMediaPipe() {
+            try {
+                const vision = await FilesetResolver.forVisionTasks(
+                    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+                );
+                
+                handLandmarker = await HandLandmarker.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: `https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task`,
+                        delegate: "GPU"
+                    },
+                    runningMode: "VIDEO",
+                    numHands: 2
+                });
+                
+                poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
+                    baseOptions: {
+                        modelAssetPath: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task`,
+                        delegate: "GPU"
+                    },
+                    runningMode: "VIDEO",
+                    numPoses: 1
+                });
+                
+                return true;
+            } catch (error) {
+                console.error('MediaPipe init error:', error);
+                return false;
+            }
+        }
+
+        async function initCamera() {
+            const video = document.getElementById('videoFeed');
+            const canvas = document.getElementById('canvasOverlay');
+            const status = document.getElementById('status');
+            
+            try {
+                status.textContent = 'Initializing MediaPipe...';
+                const mediaPipeReady = await initMediaPipe();
+                
+                if (!mediaPipeReady) {
+                    status.textContent = 'MediaPipe initialization failed';
+                    return;
+                }
+                
+                status.textContent = 'Requesting camera access...';
+                
+                // Request camera permission
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: currentCamera,
+                        width: { ideal: 640 },
+                        height: { ideal: 480 }
+                    }
+                });
+                
+                video.srcObject = stream;
+                
+                // Set canvas size to match video
+                video.addEventListener('loadedmetadata', () => {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    status.textContent = 'Camera active';
+                    
+                    // Start detection
+                    detectAndTrack();
+                });
+                
+            } catch (error) {
+                console.error('Camera error:', error);
+                status.textContent = 'Camera access denied';
+            }
+        }
+
+        function detectAndTrack() {
+            // Prevent multiple detection loops
+            if (isDetecting) {
+                console.warn('Detection already running, skipping...');
+                return;
+            }
+            isDetecting = true;
+            
+            const video = document.getElementById('videoFeed');
+            const canvas = document.getElementById('canvasOverlay');
+            const ctx = canvas.getContext('2d');
+            
+            const detect = async () => {
+                if (!video || video.readyState < 2 || !handLandmarker || !poseLandmarker) {
+                    animationId = requestAnimationFrame(detect);
+                    return;
+                }
+                
+                try {
+                    // Detect hands
+                    const handResults = handLandmarker.detectForVideo(video, performance.now());
+                    
+                    // Detect pose
+                    const poseResults = poseLandmarker.detectForVideo(video, performance.now());
+                    
+                    // Update landmarks for 3D visualization only
+                    if (handResults.landmarks && handResults.landmarks.length > 0) {
+                        currentHandLandmarks = handResults.landmarks;
+                    } else {
+                        currentHandLandmarks = null;
+                    }
+                    
+                    if (poseResults.landmarks && poseResults.landmarks.length > 0) {
+                        currentPoseLandmarks = poseResults.landmarks[0];
+                    } else {
+                        currentPoseLandmarks = null;
+                    }
+                    
+                    // Update 3D visualization
+                    updateBodyVisualization();
+                    
+                    // Handle gesture detection for translation display
+                    if (handResults.landmarks && handResults.landmarks.length > 0) {
+                        const landmarks = handResults.landmarks[0];
+                        
+                        // If recording, capture features
+                        if (isRecording) {
+                            const features = extractGestureFeatures(landmarks);
+                            if (features) {
+                                recordingFrames.push(features);
+                            }
+                        }
+                        
+                        // Track motion
+                        motionTracker.addPosition(landmarks);
+                        const motionType = motionTracker.detectWavingMotion() || 
+                                          motionTracker.detectVerticalMotion() || 
+                                          motionTracker.detectForwardMotion();
+                        
+                        // Get finger states for phrase detection
+                        const fingerStates = {
+                            thumb: isFingerExtended(landmarks, LANDMARKS.THUMB_CMC, LANDMARKS.THUMB_TIP),
+                            index: isFingerExtended(landmarks, LANDMARKS.INDEX_MCP, LANDMARKS.INDEX_TIP),
+                            middle: isFingerExtended(landmarks, LANDMARKS.MIDDLE_MCP, LANDMARKS.MIDDLE_TIP),
+                            ring: isFingerExtended(landmarks, LANDMARKS.RING_MCP, LANDMARKS.RING_TIP),
+                            pinky: isFingerExtended(landmarks, LANDMARKS.PINKY_MCP, LANDMARKS.PINKY_TIP)
+                        };
+                        
+                        // First check for custom gestures
+                        const customResult = recognizeCustomGesture(landmarks);
+                        if (customResult) {
+                            if (customResult.gesture !== lastDetectedGesture) {
+                                lastDetectedGesture = customResult.gesture;
+                                addTranslationMessage(customResult.gesture + ' (custom)', customResult.confidence);
+                            }
+                        } else {
+                            // Then check for ASL phrases
+                            const phraseResult = recognizeASLPhrase(landmarks, motionType, fingerStates, motionTracker);
+                            if (phraseResult) {
+                                // Only add message if it's different from the last detected gesture
+                                if (phraseResult.gesture !== lastDetectedGesture) {
+                                    lastDetectedGesture = phraseResult.gesture;
+                                    addTranslationMessage(phraseResult.gesture, phraseResult.confidence);
+                                }
+                            } else {
+                                // If no phrase detected, try letter/number recognition
+                                const gestureResult = recognizeASLLetter(landmarks);
+                                if (gestureResult) {
+                                    // Don't immediately show numbers/letters if we might be doing a phrase
+                                    // Wait for stable gesture to avoid showing "5" during "Thank you"
+                                    gestureAnalyzer.addGesture(gestureResult);
+                                    
+                                    // Check for stable gesture (increased duration for better phrase detection)
+                                    const stableGesture = gestureAnalyzer.detectStableGesture();
+                                    if (stableGesture && stableGesture.gesture !== lastDetectedGesture) {
+                                        // Additional check: if it's "5", make sure we're not in motion
+                                        if (stableGesture.gesture === '5' && 
+                                            (motionType || motionTracker.motionHistory.length > 20)) {
+                                            // Skip showing "5" if there's motion - might be a phrase
+                                            return;
+                                        }
+                                        lastDetectedGesture = stableGesture.gesture;
+                                        addTranslationMessage(stableGesture.gesture, stableGesture.confidence);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        // No hands detected
+                        if (lastDetectedGesture !== '') {
+                            lastDetectedGesture = '';
+                            motionTracker.reset();
+                        }
+                    }
+                    
+                } catch (error) {
+                    console.error('Detection error:', error);
+                }
+                
+                animationId = requestAnimationFrame(detect);
+            };
+            
+            detect();
+        }
+
+
+        async function switchCamera() {
+            if (stream) {
+                // Stop current detection loop
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                    isDetecting = false;
+                }
+                
+                // Stop current stream
+                stream.getTracks().forEach(track => track.stop());
+                
+                // Switch camera
+                currentCamera = currentCamera === 'user' ? 'environment' : 'user';
+                
+                // Restart with new camera
+                await initCamera();
+            }
+        }
+
+        // Initialize camera on page load
+        window.addEventListener('load', initCamera);
+        
+        // 3D Visualization
+        let scene, camera3d, renderer, bodyGroup;
+        
+        function init3DVisualization() {
+            const canvas = document.getElementById('threejsCanvas');
+            const container = document.getElementById('visualization3d');
+            
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000);
+            
+            // Create camera
+            camera3d = new THREE.PerspectiveCamera(
+                50,
+                container.clientWidth / container.clientHeight,
+                0.1,
+                1000
+            );
+            camera3d.position.set(0, 0, 5);
+            camera3d.lookAt(0, 0, 0);
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight.position.set(0, 1, 1);
+            scene.add(directionalLight);
+            
+            // Create body group
+            bodyGroup = new THREE.Group();
+            scene.add(bodyGroup);
+            
+            // Add simple body skeleton
+            createBodySkeleton();
+            
+            // Start animation loop
+            animate3D();
+        }
+        
+        function createBodySkeleton() {
+            // This will be dynamically updated with real landmarks
+        }
+        
+        function updateBodyVisualization() {
+            if (!bodyGroup) return;
+            
+            // Clear existing visualization
+            bodyGroup.clear();
+            
+            const material = new THREE.LineBasicMaterial({
+                color: 0x00ff00,
+                linewidth: 2
+            });
+            
+            const jointMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00ffff
+            });
+            
+            const headMaterial = new THREE.MeshBasicMaterial({
+                color: 0xff00ff
+            });
+            
+            const handMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00ff00
+            });
+            
+            // Process pose landmarks
+            if (currentPoseLandmarks && currentPoseLandmarks.length > 0) {
+                // Create joints for pose
+                const jointGeometry = new THREE.SphereGeometry(0.08, 16, 16);
+                
+                currentPoseLandmarks.forEach((landmark, index) => {
+                    let color = 0x00ff00; // Default green
+                    
+                    // Color coding for different body parts
+                    if (index <= 10) {
+                        color = 0xff00ff; // Magenta for face
+                    } else if (index >= 11 && index <= 16) {
+                        color = 0x00ffff; // Cyan for upper body
+                    } else if (index >= 23) {
+                        color = 0xffff00; // Yellow for lower body
+                    }
+                    
+                    const material = new THREE.MeshBasicMaterial({ color });
+                    const joint = new THREE.Mesh(jointGeometry, material);
+                    
+                    // Convert normalized coordinates to 3D space
+                    joint.position.set(
+                        (landmark.x - 0.5) * 4,
+                        -(landmark.y - 0.5) * 4,
+                        landmark.z * 2
+                    );
+                    
+                    bodyGroup.add(joint);
+                });
+                
+                // Draw connections
+                const connections = [
+                    [11, 12], [12, 24], [24, 23], [23, 11], // Torso
+                    [12, 14], [14, 16], // Right arm
+                    [11, 13], [13, 15], // Left arm
+                    [24, 26], [26, 28], // Right leg
+                    [23, 25], [25, 27], // Left leg
+                    [11, 23], [12, 24] // Cross connections
+                ];
+                
+                connections.forEach(([start, end]) => {
+                    if (start < currentPoseLandmarks.length && end < currentPoseLandmarks.length) {
+                        const startPoint = currentPoseLandmarks[start];
+                        const endPoint = currentPoseLandmarks[end];
+                        
+                        const points = [
+                            new THREE.Vector3(
+                                (startPoint.x - 0.5) * 4,
+                                -(startPoint.y - 0.5) * 4,
+                                startPoint.z * 2
+                            ),
+                            new THREE.Vector3(
+                                (endPoint.x - 0.5) * 4,
+                                -(endPoint.y - 0.5) * 4,
+                                endPoint.z * 2
+                            )
+                        ];
+                        
+                        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                        const line = new THREE.Line(geometry, material);
+                        bodyGroup.add(line);
+                    }
+                });
+            }
+            
+            // Process hand landmarks
+            if (currentHandLandmarks && currentHandLandmarks.length > 0) {
+                currentHandLandmarks.forEach((handLandmarks, handIndex) => {
+                    const handGroup = new THREE.Group();
+                    
+                    // Draw hand joints
+                    const handJointGeometry = new THREE.SphereGeometry(0.03, 8, 8);
+                    handLandmarks.forEach((landmark, index) => {
+                        const joint = new THREE.Mesh(handJointGeometry, handMaterial);
+                        joint.position.set(
+                            (landmark.x - 0.5) * 4,
+                            -(landmark.y - 0.5) * 4,
+                            landmark.z * 2 + (handIndex * 0.2) // Offset hands slightly
+                        );
+                        handGroup.add(joint);
+                    });
+                    
+                    // Draw hand connections
+                    const handConnections = [
+                        [0, 1], [1, 2], [2, 3], [3, 4], // Thumb
+                        [0, 5], [5, 6], [6, 7], [7, 8], // Index
+                        [5, 9], [9, 10], [10, 11], [11, 12], // Middle
+                        [9, 13], [13, 14], [14, 15], [15, 16], // Ring
+                        [13, 17], [0, 17], [17, 18], [18, 19], [19, 20] // Pinky
+                    ];
+                    
+                    const handLineMaterial = new THREE.LineBasicMaterial({
+                        color: handIndex === 0 ? 0x00ff00 : 0x00ffff,
+                        linewidth: 1
+                    });
+                    
+                    handConnections.forEach(([start, end]) => {
+                        const startPoint = handLandmarks[start];
+                        const endPoint = handLandmarks[end];
+                        
+                        const points = [
+                            new THREE.Vector3(
+                                (startPoint.x - 0.5) * 4,
+                                -(startPoint.y - 0.5) * 4,
+                                startPoint.z * 2 + (handIndex * 0.2)
+                            ),
+                            new THREE.Vector3(
+                                (endPoint.x - 0.5) * 4,
+                                -(endPoint.y - 0.5) * 4,
+                                endPoint.z * 2 + (handIndex * 0.2)
+                            )
+                        ];
+                        
+                        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                        const line = new THREE.Line(geometry, handLineMaterial);
+                        handGroup.add(line);
+                    });
+                    
+                    bodyGroup.add(handGroup);
+                });
+            }
+        }
+        
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            renderer.render(scene, camera3d);
+        }
+        
+        // ASL Recognition Module
+        const LANDMARKS = {
+            WRIST: 0,
+            THUMB_CMC: 1, THUMB_MCP: 2, THUMB_IP: 3, THUMB_TIP: 4,
+            INDEX_MCP: 5, INDEX_PIP: 6, INDEX_DIP: 7, INDEX_TIP: 8,
+            MIDDLE_MCP: 9, MIDDLE_PIP: 10, MIDDLE_DIP: 11, MIDDLE_TIP: 12,
+            RING_MCP: 13, RING_PIP: 14, RING_DIP: 15, RING_TIP: 16,
+            PINKY_MCP: 17, PINKY_PIP: 18, PINKY_DIP: 19, PINKY_TIP: 20
+        };
+
+        function calculateDistance(p1, p2) {
+            return Math.sqrt(
+                Math.pow(p1.x - p2.x, 2) + 
+                Math.pow(p1.y - p2.y, 2) + 
+                Math.pow(p1.z - p2.z, 2)
+            );
+        }
+
+        function calculateAngle(p1, p2, p3) {
+            const v1 = { x: p1.x - p2.x, y: p1.y - p2.y, z: p1.z - p2.z };
+            const v2 = { x: p3.x - p2.x, y: p3.y - p2.y, z: p3.z - p2.z };
+            
+            const dotProduct = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+            const mag1 = Math.sqrt(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
+            const mag2 = Math.sqrt(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
+            
+            const cosAngle = dotProduct / (mag1 * mag2);
+            return Math.acos(Math.max(-1, Math.min(1, cosAngle))) * (180 / Math.PI);
+        }
+
+        function isFingerExtended(landmarks, fingerBase, fingerTip) {
+            const wrist = landmarks[LANDMARKS.WRIST];
+            const base = landmarks[fingerBase];
+            const tip = landmarks[fingerTip];
+            
+            // For thumb, use different logic
+            if (fingerBase === LANDMARKS.THUMB_CMC) {
+                const thumbMCP = landmarks[LANDMARKS.THUMB_MCP];
+                const thumbIP = landmarks[LANDMARKS.THUMB_IP];
+                
+                // Check if thumb is away from palm
+                const indexMCP = landmarks[LANDMARKS.INDEX_MCP];
+                const thumbToIndex = calculateDistance(tip, indexMCP);
+                const thumbBaseToIndex = calculateDistance(base, indexMCP);
+                
+                return thumbToIndex > thumbBaseToIndex * 0.8;
+            }
+            
+            // For other fingers
+            const baseToWristDist = calculateDistance(base, wrist);
+            const tipToWristDist = calculateDistance(tip, wrist);
+            
+            const isHigher = tip.y < base.y + 0.02;
+            const isFarther = tipToWristDist > baseToWristDist * 1.1;
+            
+            return isHigher || isFarther;
+        }
+
+        // ASL Letter Recognition
+        function recognizeASLLetter(landmarks) {
+            if (!landmarks || landmarks.length < 21) return null;
+            
+            // Get finger states
+            const fingerStates = {
+                thumb: isFingerExtended(landmarks, LANDMARKS.THUMB_CMC, LANDMARKS.THUMB_TIP),
+                index: isFingerExtended(landmarks, LANDMARKS.INDEX_MCP, LANDMARKS.INDEX_TIP),
+                middle: isFingerExtended(landmarks, LANDMARKS.MIDDLE_MCP, LANDMARKS.MIDDLE_TIP),
+                ring: isFingerExtended(landmarks, LANDMARKS.RING_MCP, LANDMARKS.RING_TIP),
+                pinky: isFingerExtended(landmarks, LANDMARKS.PINKY_MCP, LANDMARKS.PINKY_TIP)
+            };
+            
+            const extendedCount = Object.values(fingerStates).filter(v => v).length;
+            
+            // Numbers 0-5
+            if (extendedCount === 0) {
+                const thumbAngle = calculateAngle(
+                    landmarks[LANDMARKS.THUMB_TIP],
+                    landmarks[LANDMARKS.THUMB_CMC],
+                    landmarks[LANDMARKS.INDEX_MCP]
+                );
+                
+                if (thumbAngle < 60) {
+                    return { gesture: 'A', confidence: 0.85 };
+                } else {
+                    return { gesture: '0', confidence: 0.85 };
+                }
+            } else if (extendedCount === 1 && fingerStates.index) {
+                return { gesture: '1', confidence: 0.95 };
+            } else if (extendedCount === 2 && fingerStates.index && fingerStates.middle) {
+                return { gesture: '2', confidence: 0.95 };
+            } else if (extendedCount === 3 && fingerStates.index && fingerStates.middle && fingerStates.ring) {
+                return { gesture: '3', confidence: 0.95 };
+            } else if (extendedCount === 4 && !fingerStates.thumb) {
+                return { gesture: '4', confidence: 0.90 };
+            } else if (extendedCount === 5) {
+                return { gesture: '5', confidence: 0.95 };
+            }
+            
+            // Letter recognition
+            // B - flat hand with thumb across palm
+            if (fingerStates.index && fingerStates.middle && fingerStates.ring && fingerStates.pinky && !fingerStates.thumb) {
+                return { gesture: 'B', confidence: 0.85 };
+            }
+            
+            // C - curved hand
+            if (extendedCount === 0) {
+                const indexTip = landmarks[LANDMARKS.INDEX_TIP];
+                const pinkyTip = landmarks[LANDMARKS.PINKY_TIP];
+                const distance = calculateDistance(indexTip, pinkyTip);
+                if (distance > 0.15) {
+                    return { gesture: 'C', confidence: 0.80 };
+                }
+            }
+            
+            // D - index up, others closed
+            if (fingerStates.index && !fingerStates.middle && !fingerStates.ring && !fingerStates.pinky) {
+                const thumbTip = landmarks[LANDMARKS.THUMB_TIP];
+                const middleMCP = landmarks[LANDMARKS.MIDDLE_MCP];
+                const distance = calculateDistance(thumbTip, middleMCP);
+                if (distance < 0.05) {
+                    return { gesture: 'D', confidence: 0.85 };
+                }
+            }
+            
+            // I - pinky up only
+            if (!fingerStates.thumb && !fingerStates.index && !fingerStates.middle && !fingerStates.ring && fingerStates.pinky) {
+                return { gesture: 'I', confidence: 0.90 };
+            }
+            
+            // L - thumb and index at 90 degrees
+            if (fingerStates.thumb && fingerStates.index && !fingerStates.middle && !fingerStates.ring && !fingerStates.pinky) {
+                const angle = calculateAngle(
+                    landmarks[LANDMARKS.THUMB_TIP],
+                    landmarks[LANDMARKS.WRIST],
+                    landmarks[LANDMARKS.INDEX_TIP]
+                );
+                if (angle > 70 && angle < 110) {
+                    return { gesture: 'L', confidence: 0.85 };
+                }
+            }
+            
+            // O - fingers and thumb make circle
+            if (!fingerStates.index && !fingerStates.middle && !fingerStates.ring && !fingerStates.pinky) {
+                const thumbTip = landmarks[LANDMARKS.THUMB_TIP];
+                const indexTip = landmarks[LANDMARKS.INDEX_TIP];
+                const distance = calculateDistance(thumbTip, indexTip);
+                if (distance < 0.03) {
+                    return { gesture: 'O', confidence: 0.85 };
+                }
+            }
+            
+            // Y - thumb and pinky extended
+            if (fingerStates.thumb && !fingerStates.index && !fingerStates.middle && !fingerStates.ring && fingerStates.pinky) {
+                return { gesture: 'Y', confidence: 0.85 };
+            }
+            
+            // W - index, middle, ring up
+            if (!fingerStates.thumb && fingerStates.index && fingerStates.middle && fingerStates.ring && !fingerStates.pinky) {
+                return { gesture: 'W', confidence: 0.85 };
+            }
+            
+            // V - Peace sign
+            if (fingerStates.index && fingerStates.middle && !fingerStates.ring && !fingerStates.pinky) {
+                const indexTip = landmarks[LANDMARKS.INDEX_TIP];
+                const middleTip = landmarks[LANDMARKS.MIDDLE_TIP];
+                const distance = calculateDistance(indexTip, middleTip);
+                if (distance > 0.08) {
+                    return { gesture: 'V', confidence: 0.90 };
+                }
+            }
+            
+            // U - index and middle together
+            if (fingerStates.index && fingerStates.middle && !fingerStates.ring && !fingerStates.pinky && !fingerStates.thumb) {
+                const indexTip = landmarks[LANDMARKS.INDEX_TIP];
+                const middleTip = landmarks[LANDMARKS.MIDDLE_TIP];
+                const distance = calculateDistance(indexTip, middleTip);
+                if (distance < 0.05) {
+                    return { gesture: 'U', confidence: 0.85 };
+                }
+            }
+            
+            return null;
+        }
+
+        // Gesture Sequence Analyzer
+        class GestureSequenceAnalyzer {
+            constructor() {
+                this.gestureBuffer = [];
+                this.bufferSize = 30; // ~1 second at 30fps
+                this.minGestureDuration = 15; // Increased from 10 to 15 frames for more stability
+            }
+            
+            addGesture(gesture) {
+                this.gestureBuffer.push(gesture);
+                if (this.gestureBuffer.length > this.bufferSize) {
+                    this.gestureBuffer.shift();
+                }
+            }
+            
+            detectStableGesture() {
+                if (this.gestureBuffer.length < this.minGestureDuration) {
+                    return null;
+                }
+                
+                // Check if the last N frames have the same gesture
+                const recentGestures = this.gestureBuffer.slice(-this.minGestureDuration);
+                const firstGesture = recentGestures[0]?.gesture;
+                
+                if (!firstGesture || firstGesture === 'Unknown') {
+                    return null;
+                }
+                
+                const isStable = recentGestures.every(g => g && g.gesture === firstGesture);
+                
+                if (isStable) {
+                    // Calculate average confidence
+                    const avgConfidence = recentGestures.reduce((sum, g) => sum + (g.confidence || 0), 0) / recentGestures.length;
+                    return {
+                        gesture: firstGesture,
+                        confidence: avgConfidence
+                    };
+                }
+                
+                return null;
+            }
+        }
+
+        // Motion Tracking for ASL Phrases
+        class MotionTracker {
+            constructor() {
+                this.motionHistory = [];
+                this.maxHistory = 60; // 2 seconds at 30fps
+                this.waveCount = 0;
+                this.lastWaveDirection = null;
+            }
+            
+            addPosition(landmarks) {
+                if (!landmarks || landmarks.length < 21) return;
+                
+                const wristPos = landmarks[LANDMARKS.WRIST];
+                const currentTime = Date.now();
+                
+                this.motionHistory.push({
+                    x: wristPos.x,
+                    y: wristPos.y,
+                    z: wristPos.z,
+                    time: currentTime
+                });
+                
+                if (this.motionHistory.length > this.maxHistory) {
+                    this.motionHistory.shift();
+                }
+            }
+            
+            detectWavingMotion() {
+                if (this.motionHistory.length < 20) return null;
+                
+                // Check for horizontal waving motion
+                const recent = this.motionHistory.slice(-20);
+                let directionChanges = 0;
+                let lastDirection = null;
+                
+                for (let i = 1; i < recent.length; i++) {
+                    const dx = recent[i].x - recent[i-1].x;
+                    const currentDirection = dx > 0.002 ? 'right' : dx < -0.002 ? 'left' : null;
+                    
+                    if (currentDirection && lastDirection && currentDirection !== lastDirection) {
+                        directionChanges++;
+                    }
+                    if (currentDirection) lastDirection = currentDirection;
+                }
+                
+                // Waving detected if 2-4 direction changes
+                if (directionChanges >= 2 && directionChanges <= 4) {
+                    return 'waving';
+                }
+                
+                return null;
+            }
+            
+            detectVerticalMotion() {
+                if (this.motionHistory.length < 15) return null;
+                
+                const recent = this.motionHistory.slice(-15);
+                const startY = recent[0].y;
+                const endY = recent[recent.length - 1].y;
+                const dy = endY - startY;
+                
+                if (dy > 0.08) return 'down';  // Reduced threshold for easier detection
+                if (dy < -0.08) return 'up';
+                return null;
+            }
+            
+            detectForwardMotion() {
+                if (this.motionHistory.length < 15) return null;
+                
+                const recent = this.motionHistory.slice(-15);
+                const startZ = recent[0].z;
+                const endZ = recent[recent.length - 1].z;
+                const dz = endZ - startZ;
+                
+                // Z increases as hand moves away from camera
+                if (dz > 0.03) return 'forward';  // Reduced threshold for easier detection
+                if (dz < -0.03) return 'backward';
+                return null;
+            }
+            
+            isNearChin(landmarks) {
+                if (!landmarks || landmarks.length < 21) return false;
+                
+                const wrist = landmarks[LANDMARKS.WRIST];
+                
+                // Check if hand is near face level (chin area)
+                // More forgiving thresholds for chin detection
+                // Y coordinates: 0 is top, 1 is bottom
+                // Chin is typically around 0.3-0.4 depending on camera angle
+                const nearFaceY = wrist.y > 0.2 && wrist.y < 0.5; // Broader Y range
+                const nearFaceX = Math.abs(wrist.x - 0.5) < 0.3; // Wider X range
+                
+                // Also check if hand is in upper half of screen (more likely to be near face)
+                const inUpperHalf = wrist.y < 0.6;
+                
+                return nearFaceY && nearFaceX && inUpperHalf;
+            }
+            
+            reset() {
+                this.motionHistory = [];
+                this.waveCount = 0;
+                this.lastWaveDirection = null;
+            }
+        }
+
+        // Recognize ASL Phrases
+        function recognizeASLPhrase(landmarks, motionType, fingerStates, motionTracker) {
+            if (!landmarks || !fingerStates || !motionTracker) return null;
+            
+            // Get additional motion info
+            const forwardMotion = motionTracker.detectForwardMotion();
+            const nearChin = motionTracker.isNearChin(landmarks);
+            
+            // Thank you - MUST check first! Hand starts at chin and moves forward/down
+            // All fingers extended (including thumb), starts near chin, moves forward or down
+            if (fingerStates.index && fingerStates.middle && 
+                fingerStates.ring && fingerStates.pinky && fingerStates.thumb) {
+                
+                // Debug: Log thank you detection attempts
+                if (window.debugThankYou) {
+                    console.log('Thank you check:', {
+                        nearChin,
+                        forwardMotion,
+                        motionType,
+                        wristY: landmarks[LANDMARKS.WRIST].y,
+                        wristX: landmarks[LANDMARKS.WRIST].x,
+                        wristZ: landmarks[LANDMARKS.WRIST].z
+                    });
+                }
+                
+                // Check if hand started near chin and moved forward/down
+                if (nearChin && (forwardMotion === 'forward' || motionType === 'down')) {
+                    return { gesture: 'Thank you', confidence: 0.85 };
+                }
+                
+                // If motion history shows it was near chin recently
+                if (motionTracker.motionHistory.length > 10) {
+                    const recentHistory = motionTracker.motionHistory.slice(-20, -5);
+                    const wasNearChin = recentHistory.some(pos => 
+                        Math.abs(pos.y - 0.35) < 0.2 && Math.abs(pos.x - 0.5) < 0.25
+                    );
+                    
+                    if (wasNearChin && (forwardMotion === 'forward' || motionType === 'down')) {
+                        return { gesture: 'Thank you', confidence: 0.80 };
+                    }
+                }
+                
+                // Alternative: Just forward motion with open hand (more forgiving)
+                if (forwardMotion === 'forward' && motionTracker.motionHistory.length > 10) {
+                    return { gesture: 'Thank you', confidence: 0.70 };
+                }
+            }
+            
+            // Hello/Bye - Open hand with waving motion
+            // Check this AFTER "Thank you" to avoid confusion
+            if (motionType === 'waving' && 
+                fingerStates.index && fingerStates.middle && 
+                fingerStates.ring && fingerStates.pinky) {
+                
+                // Make sure it's not a "Thank you" motion
+                // Hello/Bye should NOT have forward motion and NOT be near chin
+                if (!nearChin && forwardMotion !== 'forward') {
+                    // Check motion history length for bye-bye (longer waving)
+                    if (motionTracker.motionHistory.length > 40) {
+                        return { gesture: 'Bye-bye', confidence: 0.85 };
+                    } else {
+                        return { gesture: 'Hello', confidence: 0.90 };
+                    }
+                }
+            }
+            
+            // I love you - Thumb, index, and pinky extended (very specific)
+            if (fingerStates.thumb && fingerStates.index && 
+                !fingerStates.middle && !fingerStates.ring && fingerStates.pinky) {
+                return { gesture: 'I love you', confidence: 0.90 };
+            }
+            
+            // How are you - Pointing gesture (but not near chin)
+            if (fingerStates.index && !fingerStates.middle && 
+                !fingerStates.ring && !fingerStates.pinky && !nearChin) {
+                return { gesture: 'How are you? 🤔', confidence: 0.75 };
+            }
+            
+            return null;
+        }
+        
+        // Add translation message to overlay
+        function addTranslationMessage(gesture, confidence) {
+            const overlay = document.getElementById('translationOverlay');
+            
+            // Check if the same gesture is already displayed and still visible
+            const existingMessages = overlay.querySelectorAll('.translation-message:not(.fade-out)');
+            for (const msg of existingMessages) {
+                const existingGesture = msg.querySelector('.translation-text')?.textContent;
+                if (existingGesture === gesture) {
+                    // Same gesture is already visible, don't add duplicate
+                    return;
+                }
+            }
+            
+            const message = document.createElement('div');
+            message.className = 'translation-message';
+            
+            const confidencePercent = Math.round(confidence * 100);
+            
+            message.innerHTML = `
+                <div class="translation-label">ASL Recognition</div>
+                <div class="translation-text">${gesture}</div>
+                <div class="translation-confidence">${confidencePercent}% confidence</div>
+            `;
+            
+            // Insert at the beginning (bottom) since we're using flex-direction: column-reverse
+            overlay.insertBefore(message, overlay.firstChild);
+            
+            // Smooth scroll to bottom (which appears at top due to column-reverse)
+            overlay.scrollTop = overlay.scrollHeight;
+            
+            // Keep only last 10 messages for scrolling
+            const messages = overlay.querySelectorAll('.translation-message');
+            if (messages.length > 10) {
+                const oldMessage = messages[messages.length - 1];
+                oldMessage.classList.add('fade-out');
+                setTimeout(() => oldMessage.remove(), 300);
+            }
+            
+            // Auto-remove message after 10 seconds
+            setTimeout(() => {
+                if (message.parentNode) {
+                    message.classList.add('fade-out');
+                    setTimeout(() => message.remove(), 300);
+                }
+            }, 10000);
+        }
+        
+        // Initialize 3D visualization when page loads
+        window.addEventListener('load', async () => {
+            setTimeout(init3DVisualization, 100);
+            updateTime();
+            // Initialize gesture analyzer and motion tracker
+            gestureAnalyzer = new GestureSequenceAnalyzer();
+            motionTracker = new MotionTracker();
+            // Load custom gestures
+            await loadCustomGestures();
+            console.log('Page loaded, gestures initialized');
+        });
+        
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}`;
+            document.getElementById('statusTime').textContent = timeString;
+            
+            // Update every minute
+            updateTime.timeoutId = setTimeout(updateTime, 60000);
+        }
+        
+        // Menu functions - Make them global
+        window.toggleMenu = function() {
+            const dropdown = document.getElementById('menuDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Dummy speaker toggle function
+        window.toggleSpeaker = function() {
+            const speakerBtn = document.querySelector('.speaker-toggle');
+            if (speakerBtn.classList.contains('disabled')) {
+                speakerBtn.classList.remove('disabled');
+                speakerBtn.title = "Speech Enabled (Not Implemented)";
+                console.log('Speaker enabled (functionality not implemented)');
+            } else {
+                speakerBtn.classList.add('disabled');
+                speakerBtn.title = "Speech Disabled (Not Implemented)";
+                console.log('Speaker disabled');
+            }
+        }
+        
+        // Removed menu item functions - they are now dummy items
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const menu = document.querySelector('.menu-button');
+            const dropdown = document.getElementById('menuDropdown');
+            
+            if (!menu.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+        
+        // Cleanup function
+        function cleanup() {
+            // Stop animation loops
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                isDetecting = false;
+            }
+            
+            // Clear intervals/timeouts
+            if (updateTime.timeoutId) {
+                clearTimeout(updateTime.timeoutId);
+            }
+            
+            // Dispose of Three.js resources
+            if (window.renderer) {
+                window.renderer.dispose();
+            }
+        }
+        
+        // Add cleanup on page unload
+        window.addEventListener('beforeunload', cleanup);
+        
+        // Error recovery mechanism
+        let errorCount = 0;
+        window.addEventListener('error', (event) => {
+            errorCount++;
+            console.error('Global error:', event.error);
+            
+            // If too many errors, try to recover
+            if (errorCount > 10) {
+                console.log('Too many errors detected, attempting recovery...');
+                cleanup();
+                // Don't auto-reload - let user refresh manually if needed
+                console.error('Please refresh the page manually if issues persist');
+            }
+        });
+    </script>
+</body>
+</html>

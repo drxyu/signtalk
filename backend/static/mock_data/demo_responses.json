@@ -1,0 +1,41 @@
+{
+  "gestures": {
+    "hello": {
+      "translation": "Hello! Nice to meet you!",
+      "confidence": 0.95,
+      "emoji": "",
+      "animation": "wave"
+    },
+    "thank_you": {
+      "translation": "Thank you very much!",
+      "confidence": 0.92,
+      "emoji": "",
+      "animation": "thank-you"
+    },
+    "yes": {
+      "translation": "Yes, I agree",
+      "confidence": 0.98,
+      "emoji": "",
+      "animation": "nod"
+    },
+    "no": {
+      "translation": "No, I don't think so",
+      "confidence": 0.96,
+      "emoji": "",
+      "animation": "shake"
+    },
+    "help": {
+      "translation": "Can you help me?",
+      "confidence": 0.90,
+      "emoji": "",
+      "animation": "help"
+    }
+  },
+  "speech_to_sign": {
+    "hello": ["HELLO", "WAVE"],
+    "thank you": ["THANK", "YOU"],
+    "how are you": ["HOW", "YOU", "QUESTION"],
+    "goodbye": ["GOODBYE", "WAVE"],
+    "please": ["PLEASE", "CIRCLE"]
+  }
+}

@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.7), 0 0 60px rgba(147, 51, 234, 0.5), 0 0 80px rgba(147, 51, 234, 0.3);
+  }
+}
+
+.glow-button {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.metallic-button {
+  position: relative;
+  background: linear-gradient(to bottom, #b0b0b0 0%, #a0a0a0 45%, #909090 50%, #808080 100%);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.3),
+    0 10px 20px rgba(0,0,0,0.2),
+    inset 0 2px 3px rgba(255,255,255,0.6),
+    inset 0 -2px 3px rgba(0,0,0,0.3);
+  border: 2px solid;
+  border-color: #707070 #606060 #505050 #606060;
+}
+
+.metallic-button:hover {
+  background: linear-gradient(to bottom, #c0c0c0 0%, #b0b0b0 45%, #a0a0a0 50%, #909090 100%);
+  box-shadow: 
+    0 25px 50px rgba(0,0,0,0.35),
+    0 15px 30px rgba(0,0,0,0.25),
+    inset 0 2px 3px rgba(255,255,255,0.7),
+    inset 0 -2px 3px rgba(0,0,0,0.25);
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #262626;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  /* Remove overflow hidden to allow scrolling */
+}

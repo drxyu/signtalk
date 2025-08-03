@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+designs/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Misc
+*.log
+.cache/
+
+.claude/
+
+# Model weights and data
+*.pth
+*.pt
+*.h5
+*.pkl
+*.onnx
+weights/
+models/
+
+# Datasets and media
+*.mp4
+*.avi
+*.mov
+*.webm
+datasets/
+videos/
+
+# Vite cache
+.vite/
+
+# Logs and temporary files
+logs/
+*.tmp
+.temp/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
