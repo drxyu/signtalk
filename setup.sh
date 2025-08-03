@@ -26,12 +26,6 @@ print_warning() {
     echo -e "${YELLOW}⚠${NC} $1"
 }
 
-# Check if running from project root
-if [ ! -f "CLAUDE.md" ]; then
-    print_error "Please run this script from the project root directory"
-    exit 1
-fi
-
 # Detect OS
 OS="Unknown"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
