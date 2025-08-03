@@ -157,11 +157,9 @@ http://localhost:5173/demo.html
 
 ## Demo Video
 
-Check out SignTALK in action! This demo showcases real-time sign language translation, custom gesture training, and our intuitive interface.
+https://github.com/user-attachments/assets/9c67b163-3409-4f89-bddc-4bb7991ad507
 
-[![SignTALK Demo Video](https://img.youtube.com/vi/vPEHh_qDK50/maxresdefault.jpg)](https://youtu.be/vPEHh_qDK50?si=lBDh2iRWz5wS6dXB)
-
-*Click the image above to watch the full demo on YouTube*
+Full size vidoe: https://youtu.be/vPEHh_qDK50?si=lBDh2iRWz5wS6dXB
 
 ## Custom Gesture Training
 
