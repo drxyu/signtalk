@@ -659,7 +659,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 ---
 
 <div align="center">
-  👋 Made with love for accessibility 🫰 
+  👋 Built with love for accessibility 🫰 
 </div>
 
 ---
