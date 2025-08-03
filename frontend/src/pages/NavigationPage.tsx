@@ -2,15 +2,9 @@ import React from 'react';
 
 const NavigationPage: React.FC = () => {
   const routes = [
-    { path: '/', name: 'Main App', description: 'Main application with avatar display' },
-    { path: '/translator', name: 'Sign Language Translator', description: 'Real-time ASL recognition with 3D visualization' },
-    { path: '/pose-compare', name: 'Pose Detection Comparison', description: 'Compare MediaPipe Pose, PoseNet, and BlazePose', highlight: true },
-    { path: '/mediapipe-compare', name: 'MediaPipe Hand Comparison', description: 'Compare Three.js vs Babylon.js hand visualization' },
+    { path: '/', name: 'Main App', description: 'Main application with sign language translation' },
+    { path: '/translator', name: 'Sign Language Translator', description: 'Real-time ASL recognition with 3D visualization', highlight: true },
     { path: '/sign-demo', name: 'Sign Display Demo', description: 'Sign display components showcase' },
-    { path: '/test', name: 'Test Page', description: 'General testing page' },
-    { path: '/simple-test', name: 'Simple Test', description: 'Simple testing page' },
-    { path: '/debug', name: 'MediaPipe Debug', description: 'MediaPipe debugging tools' },
-    { path: '/test-css', name: 'CSS Test', description: 'CSS testing page' }
   ];
 
   return (
@@ -53,26 +47,24 @@ const NavigationPage: React.FC = () => {
         </div>
 
         <div className="mt-8 bg-gray-800 rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4 text-center">📋 Testing Guide</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h2 className="text-2xl font-bold mb-4 text-center">🤟 Features</h2>
+          <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-semibold text-cyan-400 mb-2">🆕 Pose Detection Comparison</h3>
-              <ul className="text-sm text-gray-300 space-y-1">
-                <li>• Tests 3 pose detection libraries side by side</li>
-                <li>• MediaPipe Pose (33 landmarks)</li>
-                <li>• PoseNet (17 landmarks)</li>
-                <li>• BlazePose (33 landmarks, high accuracy)</li>
-                <li>• Real-time performance comparison</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-green-400 mb-2">🤟 Sign Language Translator</h3>
+              <h3 className="text-lg font-semibold text-green-400 mb-2">Sign Language Translator</h3>
               <ul className="text-sm text-gray-300 space-y-1">
                 <li>• Full ASL alphabet recognition (A-Z)</li>
                 <li>• 3D hand visualization with Three.js</li>
                 <li>• Real-time gesture detection</li>
                 <li>• AI-powered translation backend</li>
                 <li>• Side-by-side camera and 3D view</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-cyan-400 mb-2">Sign Display Demo</h3>
+              <ul className="text-sm text-gray-300 space-y-1">
+                <li>• Various sign display components</li>
+                <li>• Interactive demonstrations</li>
+                <li>• Component showcase</li>
               </ul>
             </div>
           </div>
