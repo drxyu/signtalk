@@ -155,6 +155,14 @@ http://localhost:5173/demo.html
 - **Gesture Sharing**: Export/import gesture vocabularies via Git
 - **Multi-tier Storage**: Browser (instant), File (shareable), Community (pre-loaded)
 
+## Demo Video
+
+Check out SignTALK in action! This demo showcases real-time sign language translation, custom gesture training, and our intuitive interface.
+
+[![SignTALK Demo Video](https://img.youtube.com/vi/vPEHh_qDK50/maxresdefault.jpg)](https://youtu.be/vPEHh_qDK50?si=lBDh2iRWz5wS6dXB)
+
+*Click the image above to watch the full demo on YouTube*
+
 ## Custom Gesture Training
 
 ### How to Train Custom Gestures
