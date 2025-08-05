@@ -8,6 +8,8 @@
 </div>
 
 ## Special Notes
+(UPDATED: 🏆 The winner out of 800 developers. 🏆 \m/_(>.<)_\m/ )
+(https://x.com/CerebrasSystems/status/1952511328964509794)
 
 This project was initiated during the **24-hour Cerebras x Cline AI Hackathon** ([Event Link](https://lu.ma/8bgbzje8?tk=jjtT6M)), where we leveraged:
 
